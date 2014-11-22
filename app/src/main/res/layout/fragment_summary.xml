@@ -1,0 +1,33 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/addEntry_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="30dp"
+    android:layout_marginRight="30dp"
+    android:weightSum="100"
+    tools:context="com.example.cdruecker.spoon.SummaryFragment">
+
+    <TextView
+        android:id="@+id/summaryField"
+        android:layout_marginTop="3dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="60"
+        android:text="@string/app_name" />
+
+    <View
+        android:layout_marginTop="3dp"
+        android:layout_width="0dp"
+        android:layout_weight="20"
+        android:layout_height="1dp" />
+
+    <Button
+        android:id="@+id/addDiaryEntry"
+        android:layout_weight="20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/addDiary"
+        />
+
+</LinearLayout>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_margin="20dp"
+              android:weightSum="100"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="0dp"
+        android:layout_weight="15">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/foodName"
+            android:textSize="25dp"
+            android:id="@+id/editText"
+            android:layout_gravity="center_horizontal"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:id="@+id/searchForFood"
+            android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="70"
+        android:choiceMode="singleChoice"
+        android:listSelector="#FF3333"
+        android:id="@+id/list"
+        android:layout_gravity="center_horizontal"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="0dp"
+        android:layout_weight="15">
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/addFoodAmount"
+            android:layout_weight="20"/>
+        <Spinner
+            android:id="@+id/addFoodAmounts"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="80"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/sendAddEntry"
+            android:text="@string/submit"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

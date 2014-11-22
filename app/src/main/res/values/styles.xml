@@ -1,0 +1,25 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="android:actionBarStyle">@style/MainActionBar</item>
+        <item name="android:actionBarTabStyle">@style/MainActionBarTabs</item>
+
+    </style>
+
+    <!-- ActionBar styles -->
+    <style name="MainActionBar"
+        parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
+        <item name="android:background">#ffff0000</item>
+    </style>
+
+    <!-- ActionBarTab styles -->
+    <!-- TODO: insert downloaded ActionBar style. Currently in Downloads. -->
+    <style name="MainActionBarTabs"
+        parent="@android:style/Widget.Holo.Light.ActionBar.TabView">
+        <!-- tab indicator -->
+    </style>
+
+
+</resources>
