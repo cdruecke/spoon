@@ -88,7 +88,7 @@ public class SummaryFragment extends Fragment {
         setSummaryField();
     }
 
-    private void setSummaryField() {
+    public void setSummaryField() {
         TextView summary = (TextView) getView().findViewById(R.id.summaryField);
         if (Root.condition==0)
             summary.setText("" + countCalories());

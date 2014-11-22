@@ -165,11 +165,14 @@ public class AddEntryFragment2 extends Fragment {
         Food_descDao fdescDao = daoSession.getFood_descDao();
         QueryBuilder.LOG_VALUES = true;
         QueryBuilder.LOG_SQL = true;
-        // TODO: Crash if search returns nothing
         // TODO: incorporate better fuzzy matching bc this one sucks
         TextView searchField = (TextView) getActivity().findViewById(R.id.searchForFood);
-        Query query = fdescDao.queryBuilder().where(
-                new StringCondition(" NAME LIKE '%" + searchField.getText() + "%' ")).build();
+        QueryBuilder query = fdescDao.queryBuilder();
+        String[] keywords = searchField.getText().toString().split(" ");
+        for (int i = 0; i<keywords.length; i++) {
+            query.where(new StringCondition(" NAME LIKE '%" + keywords[i] + "%' "));
+        }
+        query.build();
 
         List<Food_desc> test = query.list();
                 //fdescDao.queryBuilder()
@@ -226,34 +229,40 @@ public class AddEntryFragment2 extends Fragment {
     }
 
     // TODO: Test that user entries are properly added.
+    // TODO: don't error out if people don't input all fields in
     public void submitEntry() {
 
         Food_descDao fd = daoSession.getFood_descDao();
         WeightDao wd = daoSession.getWeightDao();
         User_entryDao ud = daoSession.getUser_entryDao();
 
-        ListView ft = (ListView) getView().findViewById(R.id.list);
-        Spinner wt = (Spinner) getView().findViewById(R.id.addFoodAmounts);
-        TextView at = (TextView) getView().findViewById(R.id.addFoodAmount);
+        try {
+            ListView ft = (ListView) getView().findViewById(R.id.list);
+            Spinner wt = (Spinner) getView().findViewById(R.id.addFoodAmounts);
+            TextView at = (TextView) getView().findViewById(R.id.addFoodAmount);
 
-        float amt = Integer.parseInt(at.getText().toString());
+            float amt = Integer.parseInt(at.getText().toString());
 
-        Date date = new Date();
+            Date date = new Date();
 
-        List<Food_desc> listfooddesc = fd.queryBuilder()
-                        .where(Food_descDao.Properties.Name.eq(
-                        ft.getItemAtPosition(lpos).toString())).limit(1).list();
+            List<Food_desc> listfooddesc = fd.queryBuilder()
+                    .where(Food_descDao.Properties.Name.eq(
+                            ft.getItemAtPosition(lpos).toString())).limit(1).list();
 
-        long ndbno = listfooddesc.get(0).getNDB_no();
+            long ndbno = listfooddesc.get(0).getNDB_no();
 
-        List<Weight> listweight = wd.queryBuilder()
-                .where(WeightDao.Properties.Name.eq(
-                        wt.getSelectedItem().toString())).limit(1).list();
-        long wid = listweight.get(0).getW_id();
+            List<Weight> listweight = wd.queryBuilder()
+                    .where(WeightDao.Properties.Name.eq(
+                            wt.getSelectedItem().toString())).limit(1).list();
+            long wid = listweight.get(0).getW_id();
 
-        User_entry ue = new User_entry(null, date, amt, wid, ndbno);
+            User_entry ue = new User_entry(null, date, amt, wid, ndbno);
 
-        ud.insert(ue);
+            ud.insert(ue);
+        } catch (NumberFormatException e) {
+            System.out.println("Lol");
+            // TODO: Toast that explains what went wrong
+        }
 
         getActivity().finish();
 

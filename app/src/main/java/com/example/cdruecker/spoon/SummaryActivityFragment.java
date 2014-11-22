@@ -127,7 +127,7 @@ public class SummaryActivityFragment extends Fragment {
     }
     public void updateSummary() {
         SummaryFragment fragment = (SummaryFragment) getFragmentManager().findFragmentById(R.id.frame1);
-        fragment.countCalories();
+        fragment.setSummaryField();
     }
 
     public void editEntry(int id) {
